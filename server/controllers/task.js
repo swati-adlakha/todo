@@ -82,8 +82,8 @@ const taskController = {
                         id: req.params.id
                     }
                 }
-            ).then(function (task) {
-                    res.json(task);
+            ).then(function (rowsUpdated) {
+                    res.json(rowsUpdated);
                 }).catch(err => {
                     res.send("Error: " + err)
                 })
