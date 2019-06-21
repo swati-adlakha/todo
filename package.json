@@ -4,7 +4,8 @@
   "description": "API Garage - TODO Application",
   "main": "index.js",
   "scripts": {
-    "build": "webpack -d --progress --colors --watch",
+    "build:dev": "webpack -d --progress --colors --watch",
+    "build": "webpack -p --progress --colors",
     "start": "./node_modules/.bin/nodemon ./bin/www -w app.js",
     "test": "jest"
   },
