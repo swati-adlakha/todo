@@ -4,9 +4,8 @@ const taskController = {
     getAllTasks: (req, res) => {
         console.log("Inside getAllTasks");
         //Get all task
-        models.Task.findAll({
-        }).then(function (tasks) {
-            res.json(tasks)
+        models.Task.findAll({}).then(function (tasks) {
+            res.json(tasks);
         })
             .catch(err => {
                 res.send("error: " + err)
@@ -16,11 +15,12 @@ const taskController = {
     getActiveTasks: (req, res) => {
         console.log("Inside getActiveTasks");
         //Get all task
-        models.Task.findAll({where: {
-            active:true
-        }
+        models.Task.findAll({
+            where: {
+                active: true
+            }
         }).then(function (tasks) {
-            res.json(tasks)
+            res.json(tasks);
         })
             .catch(err => {
                 res.send("error: " + err)
@@ -30,10 +30,11 @@ const taskController = {
     getDoneTasks: (req, res) => {
         console.log("Inside getDoneTasks");
         //Get all task
-        models.Task.findAll({where: {
-            active: true,
-            done: true
-        }
+        models.Task.findAll({
+            where: {
+                active: true,
+                done: true
+            }
         }).then(function (tasks) {
             res.json(tasks)
         })
@@ -45,7 +46,7 @@ const taskController = {
     addTask: (req, res) => {
         // Add a new task
         if (!req.body.task_name) {
-            res.status(400)
+            res.status(400);
             res.json({
                 error: "Bad Data for POST"
             })
@@ -65,7 +66,7 @@ const taskController = {
 
     updateTask: (req, res) => {
         if (!req.body.task_name && !req.params.id) {
-            res.status(400)
+            res.status(400);
             res.json({
                 error: "Bad Data..."
             })
@@ -81,11 +82,11 @@ const taskController = {
                         id: req.params.id
                     }
                 }
-            )
-                .then(() => {
-                    res.send("Updated Task with id: " + req.params.id)
+            ).then(function (task) {
+                    res.json(task);
+                }).catch(err => {
+                    res.send("Error: " + err)
                 })
-                .error(err => res.send(err))
         }
     }
 
